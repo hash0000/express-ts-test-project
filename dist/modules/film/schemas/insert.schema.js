@@ -1,0 +1,15 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.InsertFilmSchema = void 0;
+const joi_1 = __importDefault(require("joi"));
+const propertyLength_1 = require("../../../common/constant/propertyLength");
+exports.InsertFilmSchema = joi_1.default.object()
+    .keys({
+    name: joi_1.default.string().min(propertyLength_1.propertyLength.ACTOR.NAME.MIN).max(propertyLength_1.propertyLength.ACTOR.NAME.MAX).required(),
+    actors: joi_1.default.array().items(joi_1.default.number()).min(1).unique().optional(),
+})
+    .required();
+//# sourceMappingURL=insert.schema.js.map
