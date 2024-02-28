@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { ObjectSchema, ValidationError } from 'joi';
-import { HttpStatusCode } from '../common/enum/httpStatusCode.enum';
+import { HttpStatusCode } from '../enum/httpStatusCode.enum';
 
 export function ValidationMiddleware(schema: ObjectSchema, payloadKey: 'body' | 'query' | 'params') {
   return async function (request: Request, response: Response, next: NextFunction) {

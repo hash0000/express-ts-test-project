@@ -1,8 +1,8 @@
 import { Request, Response, Router } from 'express';
 import { HttpStatusCode } from '../../common/enum/httpStatusCode.enum';
-import { IdSchema } from '../../common/validation/uuidSchema.validator';
-import { AuthMiddleware } from '../../middleware/jwt.middleware';
-import { ValidationMiddleware } from '../../middleware/validationHandler.middleware';
+import { AuthMiddleware } from '../../common/middleware/jwt.middleware';
+import { ValidationMiddleware } from '../../common/middleware/validationHandler.middleware';
+import { IdSchema } from '../../common/validation/idSchema.validator';
 import { InsertActorSchema } from './schemas/insert.schema';
 import { UpdateActorSchema } from './schemas/update.schema';
 import * as service from './service';
@@ -29,7 +29,7 @@ router.get('/actors', AuthMiddleware, async function (_req: Request, res: Respon
   }
 });
 
-router.get('/actor/:actorId', AuthMiddleware, ValidationMiddleware(IdSchema, 'params'), async function (req: Request, res: Response) {
+router.get('/actor/:id', AuthMiddleware, ValidationMiddleware(IdSchema, 'params'), async function (req: Request, res: Response) {
   try {
     const serviceResponse = await service.selectOne(req.params as any);
     return res.status(serviceResponse.statusCode).json(serviceResponse.data);
@@ -40,7 +40,7 @@ router.get('/actor/:actorId', AuthMiddleware, ValidationMiddleware(IdSchema, 'pa
 });
 
 router.patch(
-  '/actor/:actorId',
+  '/actor/:id',
   AuthMiddleware,
   ValidationMiddleware(IdSchema, 'params'),
   ValidationMiddleware(UpdateActorSchema, 'body'),
@@ -55,7 +55,7 @@ router.patch(
   },
 );
 
-router.delete('/actor/:actorId', AuthMiddleware, ValidationMiddleware(IdSchema, 'params'), async function (req: Request, res: Response) {
+router.delete('/actor/:id', AuthMiddleware, ValidationMiddleware(IdSchema, 'params'), async function (req: Request, res: Response) {
   try {
     const serviceResponse = await service.destroy(req.params as any);
     return res.status(serviceResponse.statusCode).json(serviceResponse.data);

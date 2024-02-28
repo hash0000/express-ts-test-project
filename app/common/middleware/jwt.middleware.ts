@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import jwt, { JwtPayload } from 'jsonwebtoken';
-import { HttpStatusCode } from '../common/enum/httpStatusCode.enum';
+import { HttpStatusCode } from '../enum/httpStatusCode.enum';
 
 interface CustomRequest extends Request {
   token: string | JwtPayload;

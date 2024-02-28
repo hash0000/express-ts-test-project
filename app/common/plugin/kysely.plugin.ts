@@ -16,7 +16,7 @@ export async function kyselyPlugin(app: Application) {
       dialect: sqliteDialect,
       plugins: [new ParseJSONResultsPlugin()],
     });
-    console.info(consoleColor.FG.GREEN, '[APP] Postgres: connection established');
+    console.info(consoleColor.FG.GREEN, '[APP] Kysely: connection established');
 
     kysely = db;
 
@@ -25,7 +25,7 @@ export async function kyselyPlugin(app: Application) {
       await kysely.destroy();
     });
   } catch (e) {
-    console.info(consoleColor.FG.RED, '[APP] Postgres: failed to establish database connection. See details:');
+    console.info(consoleColor.FG.RED, '[APP] Kysely: failed to establish database connection. See details:');
     console.error(e);
     process.exit(1);
   }

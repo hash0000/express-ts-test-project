@@ -25,6 +25,7 @@ export async function attachFilm(ids: number[], filmId: number): Promise<void> {
   return;
 }
 
+// query optimization is required. Only for test task
 export async function unattachFilms(filmId: number): Promise<void> {
   await kysely.updateTable('actor').where('actor.relation', '=', filmId).set({ relation: null }).execute();
 

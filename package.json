@@ -9,7 +9,7 @@
     "start:local": "nodemon -r dotenv/config app/main.ts dotenv_config_path=./.env",
     "start:build": "node -r source-map-support/register dist/main.js",
     "kysely-codegen": "npx kysely-codegen --out-file ./app/common/type/kysely/db.type.ts",
-    "run-migration:local": "nodemon -r dotenv/config app/common/helper/runMigration.helper.ts",
+    "migrate": "nodemon -r dotenv/config app/common/helper/runMigration.helper.ts",
     "run-migration:local-js": "node -r dotenv/config dist/common/helper/runMigration.helper.js",
     "run-migration": "nodemon app/common/helper/runMigration.helper.ts",
     "run-migration-js": "node dist/common/helper/runMigration.helper.js"

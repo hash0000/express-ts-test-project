@@ -2,10 +2,10 @@ import SQLite from 'better-sqlite3';
 import { FileMigrationProvider, Kysely, Migrator, SqliteDialect } from 'kysely';
 import { promises as fs } from 'node:fs';
 import * as path from 'node:path';
-// import { DB } from '../type/kysely/db.type';
+import { DB } from '../type/kysely/db.type';
 
 async function migrateToLatest() {
-  const db = new Kysely<any>({
+  const db = new Kysely<DB>({
     dialect: new SqliteDialect({
       database: new SQLite('./database/sqlite.db'),
     }),

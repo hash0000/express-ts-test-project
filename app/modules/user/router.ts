@@ -1,6 +1,6 @@
 import { Request, Response, Router } from 'express';
 import { HttpStatusCode } from '../../common/enum/httpStatusCode.enum';
-import { ValidationMiddleware } from '../../middleware/validationHandler.middleware';
+import { ValidationMiddleware } from '../../common/middleware/validationHandler.middleware';
 import { IInsertUserSchema, InsertUserSchema } from './schemas/insert.schema';
 import { ILoginUserSchema, LoginUserSchema } from './schemas/login.schema';
 import * as service from './service';

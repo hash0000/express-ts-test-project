@@ -1,7 +1,7 @@
 import { ValidationErrorType } from '../../common/enum/errorType.enum';
 import { HttpStatusCode } from '../../common/enum/httpStatusCode.enum';
 import { MainResponseType } from '../../common/type/mainResponse.type';
-import { IIdSchema } from '../../common/validation/uuidSchema.validator';
+import { IIdSchema } from '../../common/validation/idSchema.validator';
 import { attachFilm, unattachFilms } from '../actor/repository';
 import * as repository from './repository';
 import { IInsertFilmSchema } from './schemas/insert.schema';
@@ -25,6 +25,8 @@ export async function insert(request: IInsertFilmSchema): Promise<MainResponseTy
 }
 
 export async function update(request: IIdSchema & IUpdateFilmSchema): Promise<MainResponseType> {
+  // should be inside transaction
+
   if (request?.name !== undefined) {
     const count = await repository.countUniversal('name', request.name, request.id);
     if (count !== 0) {
@@ -36,7 +38,7 @@ export async function update(request: IIdSchema & IUpdateFilmSchema): Promise<Ma
 
     await repository.update(request.id, request.name);
   }
-  if (request?.actors) {
+  if (request?.actors !== undefined) {
     await unattachFilms(request.id);
 
     await attachFilm(request.actors, request.id);

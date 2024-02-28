@@ -1,8 +1,8 @@
 import { Request, Response, Router } from 'express';
 import { HttpStatusCode } from '../../common/enum/httpStatusCode.enum';
-import { IdSchema } from '../../common/validation/uuidSchema.validator';
-import { AuthMiddleware } from '../../middleware/jwt.middleware';
-import { ValidationMiddleware } from '../../middleware/validationHandler.middleware';
+import { AuthMiddleware } from '../../common/middleware/jwt.middleware';
+import { ValidationMiddleware } from '../../common/middleware/validationHandler.middleware';
+import { IdSchema } from '../../common/validation/idSchema.validator';
 import { InsertFilmSchema } from './schemas/insert.schema';
 import { UpdateFilmSchema } from './schemas/update.schema';
 import * as service from './service';

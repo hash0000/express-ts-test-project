@@ -1,7 +1,7 @@
 import { ValidationErrorType } from '../../common/enum/errorType.enum';
 import { HttpStatusCode } from '../../common/enum/httpStatusCode.enum';
 import { MainResponseType } from '../../common/type/mainResponse.type';
-import { IIdSchema } from '../../common/validation/uuidSchema.validator';
+import { IIdSchema } from '../../common/validation/idSchema.validator';
 import * as repository from './repository';
 import { IInsertActorSchema } from './schemas/insert.schema';
 import { IUpdateActorSchema } from './schemas/update.schema';
