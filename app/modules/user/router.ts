@@ -10,7 +10,7 @@ const router = Router();
 router.post('/auth', ValidationMiddleware(LoginUserSchema, 'body'), async function (req: Request, res: Response): Promise<Response> {
   try {
     const serviceResponse = await service.login(req.body as ILoginUserSchema);
-    return res.status(serviceResponse.statusCode).json(serviceResponse);
+    return res.status(serviceResponse.statusCode).json(serviceResponse?.data);
   } catch (e) {
     console.error(e);
     return res.status(HttpStatusCode.INTERNAL_SERVER_ERROR).send();
@@ -20,7 +20,7 @@ router.post('/auth', ValidationMiddleware(LoginUserSchema, 'body'), async functi
 router.post('/register', ValidationMiddleware(InsertUserSchema, 'body'), async function (req: Request, res: Response): Promise<Response> {
   try {
     const serviceResponse = await service.insert(req.body as IInsertUserSchema);
-    return res.status(serviceResponse.statusCode).json(serviceResponse);
+    return res.status(serviceResponse.statusCode).json(serviceResponse?.data);
   } catch (e) {
     console.error(e);
     return res.status(HttpStatusCode.INTERNAL_SERVER_ERROR).send();

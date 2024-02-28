@@ -37,11 +37,13 @@ export async function insert(request: IInsertUserSchema): Promise<MainResponseTy
     salt: Buffer.from(salt, 'utf-8'),
   });
 
-  const data = await repository.insert({ ...omit(request, ['password']), password: encrPass });
+  await repository.insert({ ...omit(request, ['password']), password: encrPass });
 
   return {
     statusCode: HttpStatusCode.CREATED,
-    data,
+    data: {
+      success: true,
+    },
   };
 }
 
@@ -68,7 +70,7 @@ export async function login(request: ILoginUserSchema): Promise<MainResponseType
   return {
     statusCode: HttpStatusCode.OK,
     data: {
-      user: userData,
+      ...userData,
       token,
     },
   };
