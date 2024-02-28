@@ -2,7 +2,8 @@ import cors from 'cors';
 import express, { Application, Router } from 'express';
 import { consoleColor } from './common/constant/consoleColor.constant';
 import { kyselyPlugin } from './common/plugin/kysely.plugin';
-import { ActorRouter } from './modules/actor/actor.router';
+import { ActorRouter } from './modules/actor/router';
+import { FilmRouter } from './modules/film/router';
 import { UserRouter } from './modules/user/router';
 
 async function app(): Promise<void> {
@@ -19,6 +20,7 @@ async function app(): Promise<void> {
   const router = Router();
   router.use('', ActorRouter);
   router.use('', UserRouter);
+  router.use('', FilmRouter);
   app.use('/api', router);
 
   app.listen(port, host);
